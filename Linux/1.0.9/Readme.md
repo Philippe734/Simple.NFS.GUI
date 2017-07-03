@@ -1,6 +1,6 @@
 # Simple NFS GUI for Linux
 
-![screenshot Linux](https://cloud.githubusercontent.com/assets/24923693/21937000/xxxxxxx.png)
+![screenshot Linux](https://user-images.githubusercontent.com/24923693/27803265-f3ab49dc-6028-11e7-8e10-857f86ac5a85.png)
 
 
 ## Install
