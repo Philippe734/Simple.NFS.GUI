@@ -1,0 +1,46 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,52,48)
+  { timerTest #Timer
+    #MoveScaled(-1,0)
+    Delay = 200
+  }
+  { framSelectListMachine Frame
+    MoveScaled(8,4,42,8)
+    Text = ("Select the xxxxxxxxx")
+    { comboListMachine ComboBox
+      MoveScaled(1,3,35,4)
+      ReadOnly = True
+    }
+    { cmdFindMachines Button
+      MoveScaled(37,3,4,4)
+      Text = ("") & "..."
+    }
+  }
+  { Button1 Button
+    MoveScaled(15,42,10,4)
+  }
+  { Frame1 Frame
+    MoveScaled(7,14,39,12)
+    Text = ("Full path of the server's folder shared")
+    { txtSharedFolderServer TextBox
+      MoveScaled(1,6,37,4)
+    }
+    { Label1 Label
+      MoveScaled(2,3,34,3)
+      Text = ("for exemple : /home/david/music")
+    }
+  }
+  { Frame2 Frame
+    MoveScaled(7,27,39,11)
+    Text = ("Choose a name for this folder")
+    { txtMountPointClient TextBox
+      MoveScaled(1,6,37,4)
+    }
+    { Label2 Label
+      MoveScaled(2,3,34,3)
+      Text = ("for exemple : DavidMusic")
+    }
+  }
+}

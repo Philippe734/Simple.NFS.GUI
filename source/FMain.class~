@@ -1,0 +1,370 @@
+' Gambas class file
+
+' Index tabs : 0=mode ; 1=client ; 2=server
+
+Public Sub cmdNext_Click()
+
+  If optClient.Value = True Then
+    tabSettings.Index = 1
+  Else If optServer.Value = True Then
+    tabSettings.Index = 2
+  Else If optClientServer.Value = True Then
+    tabSettings.Index = IIf(tabSettings.Index < 2, tabSettings.Index + 1, 2)
+  Endif
+
+End
+
+Public Sub cmdSetClient_Click()
+
+  Dim k As Integer, s As String, ret As String
+
+  ' check all fields filled
+  If comboListMachine.Count < 1 Or txtMountPointClient.Text = "" Or txtSharedFolderServer.Text = "" Then
+    Message.Warning("Complete all fields", "Back")
+    Return
+  Endif
+
+  ' check if space in name
+  If InStr(txtMountPointClient.Text, " ") > 1 Then
+    Message.Warning("Type a name without space", "OK")
+    Return
+  Endif
+
+  ' check all characters
+  For k = 1 To txtMountPointClient.Length
+    If InStr("ABCDEFGHIJKLMNOPQRSTUVWXYZ", Mid(UCase(txtMountPointClient.Text), k, 1)) < 1 Then
+      Message.Warning("Type a name only with alphabetic characters", "OK")
+      Return
+    Endif
+  Next
+
+  If Mid(txtSharedFolderServer.Text, 1, 1) <> "/" Then
+    txtSharedFolderServer.Text = "/" & txtSharedFolderServer.Text
+  Endif
+
+  If Message.Question("Please check, is it OK ?\n\n\nServer : " & comboListMachine.Text & "\n\nServer's folder : " & txtSharedFolderServer.Text & "\n\nClient's mount point : " & txtMountPointClient.Text, "Yes", "No, Back") = 2 Then Return
+
+  '
+  '
+  ' Checked by user, let's go to set the machine as CLIENT
+  '
+  '
+  ' inform user
+  Me.Mouse = Mouse.Wait
+  Me.Refresh
+  Wait 0.1
+
+  ' client mount point make dir
+  If Exist("/media/" & txtMountPointClient.Text) = False Then
+    'Message("Penser à activer mkdir")
+    Shell "sudo mkdir -p /media/" & txtMountPointClient.Text Wait
+  Endif
+
+  'Message("Penser à activer l'édition de fstab")
+  ' edit fstab to add the following line
+  s = comboListMachine.Text & ":" & txtSharedFolderServer.Text & " /media/" & txtMountPointClient.Text & " nfs users,noauto,hard,intr 0 0"
+
+  ' check if data already in fstab
+  Shell "cat /etc/fstab | grep '" & s & "'" Wait To ret
+  If ret = "" Then
+    ' add the lines to fstab
+    s = "sudo echo " & Chr(34) & "# Shared folder NFS from Server & mount point" & Chr(34) & " >> /etc/fstab"
+     Shell s Wait
+    s = "sudo echo " & Chr(34) & s & Chr(34) & " >> /etc/fstab"
+     Shell s Wait
+  Endif
+
+  '  install package NFS for client
+  'Message("Penser à activer install NFS")
+  Exec ["sudo", "apt-get", "install", "nfs-common", "-y"] Wait
+
+  Me.Mouse = Mouse.Default
+
+  ' done, go back or quit
+  If Message.Question("Done, reboot this machine to enjoy shared data.\n\nQuit or back ?", "Quit", "Back") = 2 Then
+    tabSettings.Index = 0
+    Return
+  Endif
+
+  Me.Close
+
+End
+
+Public Sub tabSettings_BeforeArrange()
+
+  Select Case tabSettings.Index
+    Case 0
+      framSelectListMachine.Visible = False
+    Case 1 ' Client
+      framSelectListMachine.Text = "Select the Server"
+      framSelectListMachine.Visible = True
+      cmdFindMachines.Enabled = True
+    Case 2 ' Server
+      framSelectListMachine.Text = "Select the Client"
+      framSelectListMachine.Visible = True
+      cmdFindMachines.Enabled = True
+  End Select
+
+End
+
+Public Sub cmdBegin_Click()
+
+  tabSettings.index = 0
+
+End
+
+Public Sub Form_Open()
+
+  Dim ret As String
+
+  tabSettings.Y = tabSettings.Y - 63
+  framSelectListMachine.Y = framSelectListMachine.Y - 63
+  Me.Height = Me.Height - 63
+  cmdBegin.y = cmdBegin.y - 63
+  cmdNext.y = cmdNext.y - 63
+  cmdAbout.y = cmdAbout.y - 63
+  cmdQuit.y = cmdQuit.y - 63
+
+  ' check if run as root
+  Shell "id -u" Wait To ret
+  If Trim(ret) <> "0" Then
+    Message("debug root form open")
+    'Message.Warning("Run this app as root.\nWith sudo or gksudo.", "Quit")
+    'Me.Close
+    Return
+  Endif
+  
+  Me.Mouse = Mouse.Default
+
+End
+
+Public Sub cmdFindMachines_Click()
+
+  Dim IPmachine As String, k As Integer, IPbase As String, s As String
+  Dim IParrMachine As String[], ret As String, IParrAllMachines As String[]
+
+  cmdFindMachines.Enabled = False
+  Me.Mouse = Mouse.Wait
+  Me.Refresh
+  Wait 0.1
+
+  ' get IP local this machine
+  Shell "hostname -I" Wait To IPmachine
+  IPmachine = Trim(IPmachine)
+  IParrMachine = Split(IPmachine, ".")
+
+  ' get the base of IP
+  For k = 0 To 2
+    IPbase = IPbase & IParrMachine[k] & "."
+  Next
+
+  comboListMachine.Clear
+
+  ' install fping
+  Exec ["sudo", "apt-get", "install", "fping", "-y"] Wait
+
+  ' do ping, fast, just list of alive machines
+  s = "fping -t 50 -a -q -r 1 -i 10 -p 20 -g " & IPbase & "0/24"
+  Print Time, "begin ping"
+  Shell s Wait To ret
+
+  ' if results, then isolate machines
+  If ret <> "" Then
+    IParrAllMachines = Split(ret, Chr$(10))
+    For Each s In IParrAllMachines
+      ' add IP all machines except this machine
+      If s <> IPmachine Then
+        If Len(s) > 4 Then
+          comboListMachine.Add(Trim(s))
+        Endif
+      Endif
+    Next
+
+  Endif
+
+  Print Time, "ping over"
+
+  comboListMachine.Index = 0
+  Me.Mouse = Mouse.Default
+
+End
+
+Public Sub cmdSetServer_Click()
+
+  Dim k As Integer, s As String, ret As String, fichier As String, sValue As String, sGrep As String, cl As String
+
+  ' check all fields filled
+  If comboListMachine.Count < 1 Or txtSharedFolder.Text = "" Then
+    Message.Warning("Please, complete all fields.\nIf no client machine found, then you should start the Clients.", "Back")
+    Return
+  Endif
+
+  If Mid(txtSharedFolder.Text, 1, 1) <> "/" Then txtSharedFolder.Text = "/" & txtSharedFolder.Text
+
+  If Mid(txtSharedFolder.Text, Len(txtSharedFolder.Text), 1) <> "/" Then txtSharedFolder.Text = txtSharedFolder.Text & "/"
+
+  If Message.Question("Please check, is it OK ?\n\n\nClient : " & comboListMachine.Text & "\n\nServer's folder : " & txtSharedFolder.Text, "Yes", "No, back") = 2 Then Return
+
+  '
+  '
+  ' Checked by user, let's go to set the machine as SERVER
+  '
+  '
+  ' inform user
+  Me.Mouse = Mouse.Wait
+  Me.Refresh
+  Wait 0.1
+
+  '  install package NFS for server
+  'Message("debug  L 215")
+  Exec ["sudo", "apt-get", "install", "nfs-kernel-server", "nfs-common", "-y"] Wait
+
+  ' edit exports to add the following line
+  s = txtSharedFolder.Text & " " & comboListMachine.Text & "(rw,all_squash,anonuid=1000,anongid=1000,sync)"
+
+  ' check if data already exist
+  Shell "cat /etc/exports | grep '" & s & "'" Wait To ret
+  
+  If ret = "" Then
+    ' add the lines
+    s = "sudo echo " & Chr(34) & "# Shared folder NFS as Server" & Chr(34) & " >> /etc/exports"
+    'Message("debug L 226 et 228")
+     Shell s Wait
+    s = "sudo echo " & Chr(34) & s & Chr(34) & " >> /etc/exports"
+     Shell s Wait
+  Endif
+
+  ' start NFS server
+  'Message("debug L 233")
+  Shell "sudo /etc/init.d/nfs-kernel-server start" Wait
+
+  ' edit the file /etc/hosts.deny
+  'Message("debug L 236 avec /etc/")
+  fichier = "/etc/hosts.deny"
+
+  ' check file exist
+  If Exist(fichier) = False Then
+    s = "# All deny\nportmap:ALL\nnfsd:ALL\nmountd:ALL"
+    s = "sudo echo " & Chr(34) & s & Chr(34) & " >> " & fichier
+    Shell s Wait
+  Else
+    '
+    ' grep value from hosts deny
+    '
+    For k = 1 To 3
+
+      Select Case k
+        Case 1
+          sValue = "portmap:"
+        Case 2
+          sValue = "nfsd:"
+        Case 3
+          sValue = "mountd:"
+      End Select
+
+      sGrep = "cat " & fichier & " | grep '" & sValue & "'"
+
+      Shell sGrep Wait To ret
+      
+      ret = Trim(ret)
+
+      ' delete the \n character at the end
+      If Mid(ret, InStr(ret, "\n")) Then ret = Mid(ret, 1, InStr(ret, "\n") - 1)
+
+      If ret = "" Then
+        ' add the line
+        s = "sudo echo " & Chr(34) & sValue & "ALL " & Chr(34) & " >> " & fichier
+        Shell s Wait
+
+      Else If Mid(ret, InStr(ret, ":") + 1) <> "ALL" Then
+        ' change value
+        s = "sudo sed -i -e 's/" & ret & "/" & sValue & "ALL/g' " & fichier
+        Shell s Wait
+
+      Endif
+
+    Next
+
+  Endif
+
+  ' edit file /etc/hosts.allow
+
+  cl = comboListMachine.Text
+
+  'Message("debug L avec /etc/hosts.allow + IP client")
+  fichier = "/etc/hosts.allow"
+
+  ' check file exist
+  If Exist(fichier) = False Then
+    s = "# Allow this client\nportmap:" & cl & "\nnfsd:" & cl & "\nmountd:" & cl & "\nlockd:" & cl & "\nrquotad:" & cl & "\nstatd:" & cl
+    s = "sudo echo " & Chr(34) & s & Chr(34) & " >> " & fichier
+    Shell s Wait
+  Else
+    '
+    ' grep value from hosts.allow
+    '
+    For k = 1 To 6
+
+      Select Case k
+        Case 1
+          sValue = "portmap:"
+        Case 2
+          sValue = "nfsd:"
+        Case 3
+          sValue = "mountd:"
+        Case 4
+          sValue = "lockd:"
+        Case 5
+          sValue = "rquotad:"
+        Case 6
+          sValue = "statd:"
+      End Select
+
+      sGrep = "cat " & fichier & " | grep '" & sValue & "'"
+
+      Shell sGrep Wait To ret
+      
+      ret = Trim(ret)
+
+      ' delete the \n character at the end
+      If Mid(ret, InStr(ret, "\n")) Then ret = Mid(ret, 1, InStr(ret, "\n") - 1)
+
+      If ret = "" Then
+        ' add the line
+        s = "sudo echo " & Chr(34) & sValue & cl & Chr(34) & " >> " & fichier
+        Shell s Wait
+
+      Else If Mid(ret, InStr(ret, ":") + 1) <> cl Then
+        ' change value
+        s = "sudo sed -i -e 's/" & ret & "/" & sValue & cl & "/g' " & fichier
+        Shell s Wait
+
+      Endif
+
+    Next
+
+  Endif
+
+  Me.Mouse = Mouse.Default
+
+  ' done, go back or quit
+  If Message.Question("Done, reboot this machine to enjoy shared data.\n\nQuit or back ?", "Quit", "Back") = 2 Then
+    tabSettings.Index = 0
+    Return
+  Endif
+
+  Me.Close
+
+End
+
+Public Sub cmdQuit_Click()
+
+  Me.Close
+
+End
+
+Public Sub cmdAbout_Click()
+
+  FAbout.ShowModal
+
+End

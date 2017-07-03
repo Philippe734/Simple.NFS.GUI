@@ -1,0 +1,16 @@
+' Gambas class file
+
+Private bFlag As Boolean
+
+Public Sub Form_BeforeArrange()
+
+  If bflag = False Then
+    bflag = True
+    Message.Info("Application to run as root")
+    Me.Close
+    Return
+  Endif
+
+  FMain.Show
+
+End

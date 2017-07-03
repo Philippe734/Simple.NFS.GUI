@@ -1,0 +1,28 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+  Me.Title = "About me"
+
+  lblAppVersion.Text = "Simple NFS GUI " & Application.Version & " for Linux"
+  lblAuthor.Text = "Free open source GNU/GPL" & Chr$(10) & "by Philippe734 @ 2017"
+
+  cmdWebSite.ToolTip = "https://github.com/Philippe734/Simple.NFS.GUI"
+
+  cmdWebSite.SetFocus
+
+End
+
+Public Sub cmdOK_Click()
+
+  Me.Close
+
+End
+
+Public Sub cmdWebSite_Click()
+
+  Dim sRet As String
+
+  Shell "xdg-open '" & cmdWebSite.ToolTip & "'" To sRet
+
+End
