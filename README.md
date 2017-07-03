@@ -46,8 +46,8 @@ This app allow you to set a machine as a Client or/and as Server in a local netw
 
 * Install the minimal package relevant to NFS.
 * Edit the following files for a Server : /etc/exports ; /etc/hosts.deny ; /etc/hosts.allow
-* Edit the following files for a Client : /etc/fstab
-* Make a dir relevant to the mount point for a Client
+* Edit /etc/fstab for a Client
+* Make a dir for the mount point for a Client
 
 
 [![download][2]][1]
