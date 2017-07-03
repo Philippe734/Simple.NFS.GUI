@@ -10,14 +10,13 @@
 
 Application written in Visual Basic Gambas. 
 
-1.Open terminal and add the PPA for the language Gambas
-
-    $ sudo add-apt-repository ppa:gambas-team/gambas3
-    $ sudo apt-get update 
-  
-2.Download the package .deb and install it.
-
-3.The dependancy for the Gambas language will be automatically installed.
+1. Open terminal and add the PPA for the language Gambas
+  ```
+  $ sudo add-apt-repository ppa:gambas-team/gambas3
+  $ sudo apt-get update 
+  ```
+2. Download the package .deb and install it.
+3. The dependancy for the Gambas language will be automatically installed.
 
 
 ## Settings
@@ -26,44 +25,30 @@ This app allow you to set a machine as a Client or/and as Server in a local netw
 
 ### Set a machine as a Client
 
-1.Select the option Client or Client+Server
-
-2.Click on ... to find the Server
-
-3.Select the IP of the Server
-
-4.Type the full path of the data shared by the Server
-
-5.Type a name for the mount point on the Client
-
-6.Click to set the machine as a Client
+1. Select the option Client or Client+Server
+2. Click on ... to find the Server
+3. Select the IP of the Server
+4. Type the full path of the data shared by the Server
+5. Type a name for the mount point on the Client
+6. Click to set the machine as a Client
 
 
 ### Set a machine as Server
 
-1.Select the option Server or Client+Server
-
-2.Click on ... to find a Client
-
-3.Select the IP of the Client
-
-4.Type the full path of the data shared by the Server
-
-5.Click to set the machine as Server
-
-6.Rerun this procedure for each Client
+1. Select the option Server or Client+Server
+2. Click on ... to find a Client
+3. Select the IP of the Client
+4. Type the full path of the data shared by the Server
+5. Click to set the machine as Server
+6. Rerun this procedure for each Client
 
 ### What does this app do ?
 
-Install the minimal package relevant to NFS.
-Edit the following files for a Server :
-/etc/exports
-/etc/hosts.deny
-/etc/hosts.allow
-Edit the following files for a Client :
-/etc/fstab
-Make a dir relevant to the mount point for a Client
-    
+* Install the minimal package relevant to NFS.
+* Edit the following files for a Server : /etc/exports ; /etc/hosts.deny ; /etc/hosts.allow
+* Edit the following files for a Client : /etc/fstab
+* Make a dir relevant to the mount point for a Client
+
 
 [![download][2]][1]
 
