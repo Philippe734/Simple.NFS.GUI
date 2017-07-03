@@ -22,7 +22,37 @@ Application written in Visual Basic Gambas.
 
 ## Settings
 
-Run this app as root, in order to set a machine as Client/Server using the NFS protocol.
+This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. In order to set a machine as Client/Server, you need to run this app as root, with sudo or gksudo for exemple.
+
+### Set a machine as a Client
+
+1.Select the option Client or Client+Server
+
+2.Click on ... to find the Server
+
+3.Select the IP of the Server
+
+4.Type the full path of the data shared by the Server
+
+5.Type a name for the mount point on the Client
+
+6.Click to set the machine as a Client
+
+
+### Set a machine as Server
+
+1.Select the option Server or Client+Server
+
+2.Click on ... to find a Client
+
+3.Select the IP of the Client
+
+4.Type the full path of the data shared by the Server
+
+5.Click to set the machine as Server
+
+6.Rerun this procedure for each Client
+
 
 [![download][2]][1]
 
