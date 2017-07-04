@@ -1,0 +1,18 @@
+' Gambas class file
+
+
+Public Sub Form_Open()
+
+  Timer1.Delay = 1000
+  Timer1.Enabled = True
+
+End
+
+Public Sub Timer1_Timer()
+
+  Timer1.Enabled = False
+  
+  
+  Me.Close
+
+End

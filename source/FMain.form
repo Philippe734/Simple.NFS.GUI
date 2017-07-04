@@ -1,14 +1,10 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,57,67)
+  MoveScaled(0,0,58,64)
   Icon = Picture["nfs-folder-icon.png"]
-  { cmdNext Button
-    MoveScaled(38,55,18,5)
-    Text = ("Next >")
-  }
   { tabSettings TabStrip
-    MoveScaled(-1,2,73,52)
+    MoveScaled(-1,0,73,52)
     Count = 3
     Index = 0
     Text = ("Mode")
@@ -116,7 +112,7 @@
     Index = 0
   }
   { framSelectListMachine Frame
-    MoveScaled(12,11,39,8)
+    MoveScaled(13,9,39,8)
     Visible = False
     Text = ("Select the xxxxxxxxx")
     { comboListMachine ComboBox
@@ -129,15 +125,19 @@
     }
   }
   { cmdBegin Button
-    MoveScaled(19,55,18,5)
+    MoveScaled(20,53,18,5)
     Text = ("< Begin")
   }
+  { cmdAbout Button
+    MoveScaled(30,59,8,4)
+    Text = ("About")
+  }
   { cmdQuit Button
-    MoveScaled(38,61,18,4)
+    MoveScaled(39,59,18,4)
     Text = ("Quit")
   }
-  { cmdAbout Button
-    MoveScaled(29,61,8,4)
-    Text = ("About")
+  { cmdNext Button
+    MoveScaled(39,53,18,5)
+    Text = ("Next >")
   }
 }

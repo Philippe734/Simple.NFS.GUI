@@ -1,0 +1,22 @@
+' Gambas class file
+
+
+Public Sub Form_Open()
+
+  Timer1.Delay = 1000
+  Timer1.Enabled = True
+
+End
+
+Public Sub Timer1_Timer()
+
+  Timer1.Enabled = False
+  
+   Exec ["sudo", "/etc/init.d/nfs-kernel-server", "start"] Wait
+
+   'Shell "sudo /etc/init.d/nfs-kernel-server start" Wait
+  
+  
+  Me.Close
+
+End
