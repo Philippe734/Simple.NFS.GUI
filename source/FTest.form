@@ -1,8 +1,0 @@
-# Gambas Form File 3.0
-
-{ Form Form
-  MoveScaled(0,0,64,47)
-  { Timer1 #Timer
-    #MoveScaled(1,2)
-  }
-}
