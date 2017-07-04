@@ -20,8 +20,3 @@ Application written in Visual Basic Gambas.
 ## Settings
 
 Run this app as root, in order to set a machine as Client/Server using the NFS protocol.
-
-[![download][2]][1]
-
-  [1]: https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.9/Setup_Simple_NFS_GUI_1.0.9_all.deb
-  [2]: https://cloud.githubusercontent.com/assets/24923693/21723900/7fdda69e-d432-11e6-8ab1-87dd79f36fe5.gif
