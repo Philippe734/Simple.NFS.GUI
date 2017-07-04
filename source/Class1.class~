@@ -1,9 +1,0 @@
-' Gambas class file
-
-Create Private
-
-Public Sub mBegin()
-  
-  Message.Info("1") 
-  
-End
