@@ -4,9 +4,10 @@
 
 ## Download
 
-Linux Ubuntu/Debian/Mint : [![Linux][2]][3]
+Linux version for Ubuntu/Debian/Mint : [![Linux][2]][1]
 
-  [3]: https://github.com/Philippe734/Simple.NFS.GUI
+  [1]: https://github.com/Philippe734/Simple.NFS.GUI
+  [2]: https://cloud.githubusercontent.com/assets/24923693/21724562/26754b04-d435-11e6-9654-779c17c2ebcf.png
 
 
 ## Install
