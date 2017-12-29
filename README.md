@@ -10,13 +10,20 @@
 
 Application written in Visual Basic Gambas. 
 
-1. Open terminal and add the PPA for the language Gambas
+1. Open terminal and add the PPA for the Gambas language support :
   ```
   $ sudo add-apt-repository ppa:gambas-team/gambas3
   $ sudo apt-get update 
   ```
-2. Download the package .deb and install it.
-3. The dependancy for the Gambas language will be automatically installed.
+2. Download the package .deb and install it :
+  ```
+  $ sudo dpkg -i ~/Downloads/Setup_Simple_NFS_GUI_1.x.x.deb
+  ```
+The dependancy for the Gambas language will be automatically installed.
+The application is not in the PPA and can't be install with a classic apt :
+  ```
+  $ sudo apt install setup-simple-nfs-gui # <<< didn't work
+  ```
 
 
 ## Settings
