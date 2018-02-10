@@ -22,7 +22,7 @@ Application written in Visual Basic Gambas.
 The dependancy for the Gambas language will be automatically installed.
 The application is not in the PPA and can't be install with a classic apt :
   ```
-  $ sudo apt install setup-simple-nfs-gui # <<< don't work
+  $ sudo apt install simple-nfs-gui # <<< don't work
   ```
 
 
