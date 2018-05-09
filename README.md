@@ -18,8 +18,12 @@ Application written in Visual Basic Gambas.
   ```
   sudo dpkg -i ~/Downloads/Setup_Simple_NFS_GUI_1.x.x.deb && sudo apt-get install -fy
   ```
-The dependancy for the Gambas language will be automatically installed.
-The application is not in the PPA and can't be install with a classic apt :
+Run it as root:
+  ```
+sudo Simple_NFS_GUI
+  ```
+The dependancies for the Gambas language will be automatically installed.
+The application is not in the PPA and can't be install with a classic install :
   ```
   sudo apt install simple-nfs-gui # <<< don't work
   ```
@@ -28,7 +32,9 @@ The application is not in the PPA and can't be install with a classic apt :
 ## Settings
 
 This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. In order to set a machine as Client/Server, you need to run this app as root, with sudo or gksudo for exemple.
-
+  ```
+sudo Simple_NFS_GUI
+  ```
 ### Set a machine as a Client
 
 1. Select the option Client or Client+Server
