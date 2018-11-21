@@ -33,10 +33,8 @@ The application is not in the PPA and can't be install with a classic apt instal
 
 ## Settings
 
-This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. In order to set a machine as Client/Server, you need to run this app as root, with sudo or gksudo for exemple.
-  ```
-sudo Simple_NFS_GUI
-  ```
+This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. In order to set a machine as Client/Server, you need to run this app as root, with sudo -H or gksu. Reboot the machine after settings.
+
 ### Set a machine as a Client
 
 1. Select the option Client or Client+Server
