@@ -61,6 +61,11 @@ sudo Simple_NFS_GUI
 * Edit /etc/fstab for a Client
 * Make a dir for the mount point for a Client
 
+## Profile
+
+![youhou](https://cloud.githubusercontent.com/assets/24923693/21691776/43084e80-d37a-11e6-9571-5c6c60c19964.gif)
+
+I'm the author of the famous VPN Lifeguard. If you want to reward my work, or thank me, then you can [donate](http://vpnlifeguard.blogspot.fr/p/faire-un-don.html) a few dollars [HERE](http://vpnlifeguard.blogspot.fr/p/faire-un-don.html) and I'll be very happy!
 
 [![download][2]][1]
 
