@@ -12,18 +12,20 @@ Application written in Visual Basic Gambas.
 
 1. Open terminal and add the PPA for the Gambas language support :
   ```
-  sudo add-apt-repository ppa:gambas-team/gambas3 -y && sudo apt-get update 
+  sudo add-apt-repository ppa:gambas-team/gambas3 -y ; sudo apt-get update 
   ```
 2. Download the package .deb and install it :
   ```
-  sudo dpkg -i ~/Downloads/Setup_Simple_NFS_GUI_1.x.x.deb && sudo apt-get install -fy
+  sudo dpkg -i ~/Downloads/Setup_Simple_NFS_GUI_1.0.9.deb ; sudo apt-get install -fy
   ```
 Run it as root:
   ```
-sudo Simple_NFS_GUI
+sudo -H Simple_NFS_GUI # or gksu Simple_NFS_GUI (Ubuntu 16.04 and older) 
   ```
+After settings client and/or server, rerun it to add multiples folders. Reboot the machine.
+
 The dependancies for the Gambas language will be automatically installed.
-The application is not in the PPA and can't be install with a classic install :
+The application is not in the PPA and can't be install with a classic apt install :
   ```
   sudo apt install simple-nfs-gui # <<< don't work
   ```
