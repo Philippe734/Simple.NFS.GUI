@@ -1,0 +1,4 @@
+1.0.15 :
+Only switch from GTK3 to Qt4 because gambas3.gb.gtk3 is not finished.
+1.0.9 :
+First release
