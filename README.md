@@ -47,6 +47,9 @@ sudo -H Simple_NFS_GUI
 * Edit /etc/fstab for a Client
 * Make a dir for the mount point for a Client
 
+### Fedora
+A package is available: https://repository.codelinsoft.it/?dir=fedora/29
+
 ## Profile
 
 ![youhou](https://cloud.githubusercontent.com/assets/24923693/21691776/43084e80-d37a-11e6-9571-5c6c60c19964.gif)
