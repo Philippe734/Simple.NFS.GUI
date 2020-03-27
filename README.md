@@ -8,9 +8,9 @@
 
 ## Install
 
-Download the package, install it and get the dependencies with this one line commands:
+Download the package, install it, get the dependencies and run it with this one line commands:
   ```
-  sudo add-apt-repository ppa:gambas-team/gambas3 -y ; sudo apt-get update ; wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.15/simple-nfs-gui_1.0.15-0ubuntu1_all.deb -P ~ ; sudo dpkg -i ~/simple-nfs-gui_1.0.15-0ubuntu1_all.deb ; sudo apt-get install -fy ; rm ~/simple-nfs-gui_1.0.15-0ubuntu1_all.deb
+  sudo add-apt-repository ppa:gambas-team/gambas3 -y ; sudo apt-get update ; wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.15/simple-nfs-gui_1.0.15-0ubuntu1_all.deb -P ~ ; sudo dpkg -i ~/simple-nfs-gui_1.0.15-0ubuntu1_all.deb ; sudo apt-get install -fy ; rm ~/simple-nfs-gui_1.0.15-0ubuntu1_all.deb ; sudo -H Simple_NFS_GUI
   ```
 
 
