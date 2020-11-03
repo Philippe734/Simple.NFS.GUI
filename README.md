@@ -8,9 +8,14 @@
 
 ## Install
 
-Download the package, install it, get the dependencies and run it with this one line commands:
+Download the package, install it, get the dependencies and run it with this one line commands. Same build, but two releases with different GUI: GTK3 or Qt5
+Release with GTK3 GUI:
   ```
-  sudo add-apt-repository ppa:gambas-team/gambas3 -y ; sudo apt-get update ; wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.15/simple-nfs-gui_1.0.15-0ubuntu1_all.deb -P ~ ; sudo dpkg -i ~/simple-nfs-gui_1.0.15-0ubuntu1_all.deb ; sudo apt-get install -fy ; rm ~/simple-nfs-gui_1.0.15-0ubuntu1_all.deb ; sudo -H Simple_NFS_GUI
+  sudo add-apt-repository ppa:gambas-team/gambas3 -y && sudo apt-get update && wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.16/simple-nfs-gui_1.0.16-0ubuntu1_all.deb -P ~ && sudo dpkg -i ~/simple-nfs-gui_1.0.16-0ubuntu1_all.deb && sudo apt-get install -fy && rm ~/simple-nfs-gui_1.0.16-0ubuntu1_all.deb && sudo -H Simple_NFS_GUI
+  ```
+Release with Qt5 GUI:
+  ```
+  sudo add-apt-repository ppa:gambas-team/gambas3 -y && sudo apt-get update && wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.17/simple-nfs-gui_1.0.17-0ubuntu1_all.deb -P ~ && sudo dpkg -i ~/simple-nfs-gui_1.0.17-0ubuntu1_all.deb && sudo apt-get install -fy && rm ~/simple-nfs-gui_1.0.17-0ubuntu1_all.deb && sudo -H Simple_NFS_GUI
   ```
 
 
