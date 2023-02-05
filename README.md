@@ -8,23 +8,14 @@
 
 ## Install
 
-Download the package, install it, get the dependencies and run it with this one line commands. Same build, but two releases with different GUI: GTK3 or Qt5
-
-Release with GTK3 GUI (works with Ubuntu 20.04):
-  ```
-  sudo add-apt-repository ppa:gambas-team/gambas3 -y && sudo apt-get update && wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.16/simple-nfs-gui_1.0.16-0ubuntu1_all.deb -P ~ && sudo dpkg -i ~/simple-nfs-gui_1.0.16-0ubuntu1_all.deb && sudo apt-get install -fy && rm ~/simple-nfs-gui_1.0.16-0ubuntu1_all.deb && sudo -H Simple_NFS_GUI
-  ```
-Release with Qt5 GUI (I don't know were it works, tell me in an issue):
-  ```
-  sudo add-apt-repository ppa:gambas-team/gambas3 -y && sudo apt-get update && wget https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.17/simple-nfs-gui_1.0.17-0ubuntu1_all.deb -P ~ && sudo dpkg -i ~/simple-nfs-gui_1.0.17-0ubuntu1_all.deb && sudo apt-get install -fy && rm ~/simple-nfs-gui_1.0.17-0ubuntu1_all.deb && sudo -H Simple_NFS_GUI
-  ```
+Release available in AppImage, indeed after some years!
 
 
 ## Settings
 
 This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. In order to set a machine as Client/Server, you need to run this app as root, with sudo -H or gksu. Reboot the machine after settings.
   ```
-sudo -H Simple_NFS_GUI
+sudo -H simple-nfs-gui-gambas-latest-x86_64.AppImage
   ```
 
 ### Set a machine as a Client
@@ -65,7 +56,3 @@ A package is available: https://repository.codelinsoft.it/?dir=fedora/29
 
 If you want to reward my work, or thank me, then you can donate a few dollars on my main old website [HERE](http://vpnlifeguard.blogspot.fr/p/faire-un-don.html) and I'll be very happy!
 
-[![download][2]][1]
-
-  [1]: https://github.com/Philippe734/Simple.NFS.GUI/raw/master/Linux/1.0.15/simple-nfs-gui_1.0.15-0ubuntu1_all.deb
-  [2]: https://cloud.githubusercontent.com/assets/24923693/21723900/7fdda69e-d432-11e6-8ab1-87dd79f36fe5.gif
