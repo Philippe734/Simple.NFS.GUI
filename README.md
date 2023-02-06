@@ -43,9 +43,3 @@ sudo -H simple-nfs-gui-gambas-latest-x86_64.AppImage
 * Edit the following files for a Server : /etc/exports ; /etc/hosts.deny ; /etc/hosts.allow
 * Edit /etc/fstab for a Client
 * Make a dir for the mount point for a Client
-
-### Review / Guide
-https://www.linuxuprising.com/2018/11/easy-nfs-share-setup-in-ubuntu-linux.html
-
-### Fedora
-A package is available: https://repository.codelinsoft.it/?dir=fedora/29
