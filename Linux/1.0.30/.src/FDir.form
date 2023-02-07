@@ -1,0 +1,16 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,75,37)
+  Text = ("Select the folder to share")
+  Icon = Picture["nfs-folder-icon.png"]
+  Resizable = False
+  { DirChooser1 DirChooser
+    MoveScaled(1,1,73,30)
+    ShowSplitter = False
+  }
+  { cmdOK Button
+    MoveScaled(29,32,17,4)
+    Text = ("OK")
+  }
+}

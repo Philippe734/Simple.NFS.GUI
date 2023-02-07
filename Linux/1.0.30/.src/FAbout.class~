@@ -1,0 +1,36 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+  Me.Title = "About me"
+
+  lblAppVersion.Text = "Simple NFS GUI " & Application.Version & " for Linux"
+  lblAuthor.Text = "Free open source GNU/GPL" & Chr$(10) & "by Philippe734 @ 2017"
+
+  cmdWebSite.ToolTip = "https://github.com/Philippe734/Simple.NFS.GUI"
+
+  cmdWebSite.SetFocus
+
+  cmdWebSite.Enabled = True
+
+End
+
+Public Sub cmdOK_Click()
+
+  Me.Close
+
+End
+
+Public Sub cmdWebSite_Click()
+
+  cmdWebSite.Enabled = False
+
+  Me.Mouse = Mouse.Wait
+
+  Exec ["xdg-open", cmdWebSite.ToolTip] Wait
+
+  Me.Mouse = Mouse.Default
+
+  Me.Close
+
+End

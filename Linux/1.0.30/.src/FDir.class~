@@ -1,0 +1,13 @@
+' Gambas class file
+
+Public Sub Form_Close()
+
+  FMain.sServerFolderPath = DirChooser1.SelectedPath
+
+End
+
+Public Sub cmdOK_Click()
+
+  Me.Close
+
+End

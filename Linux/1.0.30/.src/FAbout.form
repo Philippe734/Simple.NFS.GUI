@@ -1,0 +1,27 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,35,36)
+  Resizable = False
+  { cmdWebSite Button
+    MoveScaled(1,31,16,4)
+    Text = ("Web site")
+  }
+  { cmdOK Button
+    MoveScaled(18,31,16,4)
+    Text = ("OK")
+  }
+  { txtAbout TextLabel
+    MoveScaled(1,10,33,20)
+    Background = Color.White
+    Text = ("This app help to set a machine as Client/Server in a local network using the NFS protocol. Minimal settings is used. To set several folders by Client/Server, use this application for each folder. Go to web site for more information. App developed for free, you can thank the author with a donation.")
+    Alignment = Align.Center
+    Border = Border.Raised
+  }
+  { lblAppVersion Label
+    MoveScaled(1,1,33,3)
+  }
+  { lblAuthor Label
+    MoveScaled(1,4,33,6)
+  }
+}
