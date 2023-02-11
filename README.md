@@ -1,10 +1,13 @@
 # Simple NFS GUI for Linux
 
+[![Download][2]][1]
+
+  [1]: https://github.com/Philippe734/Simple.NFS.GUI/releases
+  [2]: https://docs.appimage.org/_images/download-appimage-banner.svg
+
 ![screenshot1 Linux](https://user-images.githubusercontent.com/24923693/27803265-f3ab49dc-6028-11e7-8e10-857f86ac5a85.png)
 ![screenshot2 Linux](https://user-images.githubusercontent.com/24923693/27803341-3c222398-6029-11e7-909e-47fd10f8da30.png)
 ![screenshot3 Linux](https://user-images.githubusercontent.com/24923693/27803354-473c5898-6029-11e7-9e24-9f6bd7ee686a.png)
-
-
 
 ## Install
 
@@ -55,3 +58,5 @@ sudo -H simple-nfs-gui-gambas-latest-x86_64.AppImage
 
 * You have to edit `/etc/fstab` and `/etc/exports` to remove entries about NFS
 * In future, maybe I will add option to remove it by my app
+
+[![Download][2]][1]
