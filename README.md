@@ -10,6 +10,13 @@
 
 Release available in AppImage, indeed after some years!
 
+### French video tuto part 1
+
+[![Watch the video]](https://user-images.githubusercontent.com/24923693/218248242-c31da275-afd2-47f5-8835-5d2e5542f5f2.mp4)
+
+### French video tuto Part 2
+
+[![Watch the video]](https://user-images.githubusercontent.com/24923693/218248266-444c1ca5-03f9-4c47-b62e-b79f917b9554.mp4)
 
 ## Settings
 
