@@ -17,7 +17,7 @@ This app allow you to set a machine as a Client or/and as Server in a local netw
   ```
 sudo -H simple-nfs-gui-gambas-latest-x86_64.AppImage
   ```
-
+/!\ Clients and servers must have static IP addresses
 ### Set a machine as a Client
 
 1. Select the option Client or Client+Server
