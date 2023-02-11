@@ -39,7 +39,12 @@ sudo -H simple-nfs-gui-gambas-latest-x86_64.AppImage
 
 ### What does this app do ?
 
-* Install the minimal package relevant to NFS.
+* Install packages relevant to NFS, including `fping`, `nfs-common` and `nfs-kernel-server`
 * Edit the following files for a Server : /etc/exports ; /etc/hosts.deny ; /etc/hosts.allow
 * Edit /etc/fstab for a Client
-* Make a dir for the mount point for a Client
+* Make a dir for the client's mount point
+
+### Delete NFS settings
+
+* You have to edit `/etc/fstab` and `/etc/exports` to remove entries about NFS
+* In future, maybe I will add option to remove it by my app
