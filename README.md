@@ -53,4 +53,16 @@ This app allow you to set a machine as a Client or/and as Server in a local netw
 * You have to edit `/etc/fstab` and `/etc/exports` to remove entries about NFS
 * In future, maybe I will add option to remove it by my app
 
+### How to compile and build simple-nfs-gui-gambas.AppImage ?
+
+* Download the repository and find the sources (Fmain.class, Fmain.form…)
+* Install gambas3
+* Open sources in gambas3 and compile to get `simple-nfs-gui.gambas`
+* Download `appimage-builder.AppImage` from their official site
+* With the recipe `simple-nfs-gui-gambas.yml` in the sources, the `simple-nfs-gui.gambas` compiled and the builder tool, build the AppImage :
+
+`appimage-builder.AppImage --recipe simple-nfs-gui-gambas.yml`
+
+
+
 [![Download][2]][1]
