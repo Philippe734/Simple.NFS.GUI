@@ -13,20 +13,14 @@
 
 Release available in AppImage, indeed after some years!
 
-### French video tuto part 1
+### French video tuto release 1.0.40
 
-[![Watch the video]](https://user-images.githubusercontent.com/24923693/218248242-c31da275-afd2-47f5-8835-5d2e5542f5f2.mp4)
-
-### French video tuto Part 2
-
-[![Watch the video]](https://user-images.githubusercontent.com/24923693/218248266-444c1ca5-03f9-4c47-b62e-b79f917b9554.mp4)
+[![Watch the video]](https://user-images.githubusercontent.com/24923693/221423865-c44d7236-fd57-49f8-a19b-3f8c16195ff7.mp4)
 
 ## Settings
 
-This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. In order to set a machine as Client/Server, you need to run this app as root, with sudo -H or gksu. Reboot the machine after settings.
-  ```
-sudo -H simple-nfs-gui-gambas-latest-x86_64.AppImage
-  ```
+This app allow you to set a machine as a Client or/and as Server in a local network, using the NFS protocol for Linux. This is a front-end for NFS, a GUI tool for NFS. Reboot the machine(s) after settings.
+
 /!\ Clients and servers must have static IP addresses
 ### Set a machine as a Client
 
