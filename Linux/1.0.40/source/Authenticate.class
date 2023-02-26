@@ -1,0 +1,139 @@
+' Gambas class file
+
+'Updated by Charlie Reinl to cover all languages. (29/09/2019)
+'Aktualisiert von Charlie Reinl, um alle Sprachen abzudecken. (29/09/2019)
+
+Create Static                                                                         'Store Class in memory
+
+siCount As Short                                                                      'Counter
+sOutput As String                                                                     'To return the output of a command
+sCommand As String                                                                    'Command to run
+'sPassword As String                                                                   'Stores the password for one pass only
+Static sPassword As String                                                            ''Stores the password for the whole time the program is running
+
+Public Sub Command(Command As String) As String                                       'Takes the Command and returns the output of the command
+  
+  If Not Command Then Return                                                            'If there is no Command then get out of here!
+  sCommand = Command                                                                    'Move the Command to a global variable
+  
+  If sPassword Then                                                                     'If the password has been stored then..
+    ButtonAuthenticate_Click                                                            'Click the 'Authenticate' button
+    Return sOutput                                                                      'Return the Command's output
+  End If
+  
+  LabelHeader.text = ("Authentication is required to run this program\n'") & Command & "'" 'Add a notice and the name of the command to be run
+  
+  CheckCapsLock                                                                         'Check if the Caps Lock is on
+  Me.Showmodal                                                                          'Show the Authentication Form
+  Return sOutput                                                                        'Return the Command's output
+  
+End
+
+Public Sub ButtonAuthenticate_Click()                                                 'When the the Authenticate button is clicked..
+  
+  Dim sPass As String                                                                   'To store the password after the 'Shell$' command
+  Dim sChkOutput As String                                                              'just the checker response
+  
+  LabelFail.Visible = False                                                             'Hide the LabelFail
+  Wait                                                                                  'Once around the Event Loop
+  If Not sPassword Then sPassword = TextBoxPassword.Text                                'If there is no password stored then take it from TextBox
+  sPass = Shell$(sPassword)                                                             'The caters for odd characters in the password
+  
+  ' If InStr(sCommand, "2>&1") Then                                                       'If the error output has been requested then
+  '   Try Shell "echo " & sPass & " | sudo -S " & sCommand To sOutput                     'Shell the Command with the password to sOutput
+  '   Print "executed #1", Time
+  ' Else                                                                                  'Else..
+  '   Try Shell "echo " & sPass & " | sudo -S " & sCommand & " 2>&1" To sOutput           'Shell the Command with the password and output the Error string
+  '   Print "executed #1", Time
+  ' End If
+  
+  Try Shell "sudo -K;echo " & sPass & "|sudo -S -k whoami 2>&1" To sChkOutput           'Shell the Command with the password and outputs the owner
+  
+  If Not InStr(sChkOutput, ("root")) Then                                               'must be 'root', if not, then the password is incorrect
+    ' does not work in other languages
+    ' If InStr(sOutput, ("incorrect password attempt")) Then                                'If the password is incorrect then..
+    sPassword = ""                                                                      'Clear sPassword
+    TextBoxPassword.text = ""                                                           'Clear the TextBox
+    TextBoxPassword.SetFocus                                                            'Put the cursor in the TexBox
+    Timer1.Start                                                                        'Start the Timer
+  Else                                                                                  'Else..
+    Try Shell "echo " & sPass & " | sudo -S " & sCommand To sOutput                     'The password is good so run the command to get the standard output
+    Me.Close                                                                            'Close the Form
+  End If
+  
+End
+
+Public Sub ButtonCancel_Click()                                                       'If the Cancel button is clicked..
+  
+  Me.Close                                                                              'Close the Form
+  Return                                                                                'Return
+  
+End
+
+Public Sub Timer1_Timer()                                                             'Timer to 'Shake' the Form when an incorrect password is entered
+  
+  If Even(Me.X) Then Me.x += 9 Else Me.x -= 9                                           'If the Form's X value is even then add 9 to it Else subtract 9 from the X value
+  LabelFail.Visible = True                                                              'Show the LabelFail
+  Wait                                                                                  'Once around the Event Loop
+  Inc siCount                                                                           'Increase the counter
+  If siCount > 75 Then                                                                  'If the counter is greater than 75 then..
+    Timer1.Stop                                                                         'Stop the Timer (and therefore the 'Shaking')
+    siCount = 0                                                                         'Reset the counter
+  End If
+  
+End
+
+Public Sub TextBoxPassword_KeyRelease()                                               'To catch the user pressing [Enter] or [Return]
+  
+  If Key.Text = "\r" Then ButtonAuthenticate_Click                                      'If the user pressed [Enter] or [Return] then Click the 'Authenticate' button
+  CheckCapsLock                                                                         'Check the Caps Lock
+  
+End
+
+Public Sub CheckCapsLock()                                                            'To check the Caps Lock state
+  
+  Dim sState As String                                                                  'To store the 'Shell' output
+  Dim siCap As Short                                                                    'To store the 'Value' of Caps Lock state
+  
+  Shell "xset q | grep 'LED mask'" To sState                                            'Shell command. Result is similar to: - 'auto repeat:  on    key click percent:  0    LED mask:  00000003'
+  
+  siCap = Right(Bin(Right(Trim(sState), 1)), 1)                                         'Get the last binary value, see alternative code below
+  
+  If siCap Then                                                                         'If siCap is not 0 then..
+    LabelCaps.text = ("Caps Lock is ON")                                                'Add a message to the Form indicating the Caps Lock is on
+  Else                                                                                  'siCap must be 0
+    LabelCaps.text = ""                                                                 'Clear the Caps Lock message
+  Endif
+  
+End
+
+'sState = Trim(sState)                   'Remove any 'white space' from the ends of the string = 'auto repeat:  on    key click percent:  0    LED mask:  00000003'
+'siCap = Right(sState, 1)                'Get the last charater in the string                  = 3
+'siCap = Bin(siCap)                      'Get the binary value of siCap                        = 11
+'siCap = Right(Str(siCap), 1)            'Get the last bianary value                           = 1 (The last binary is either 0 - Caps Lock Off - or 1 - Caps Lock On)
+
+'Usage
+'Authenticate.Command("cp ~/file.txt /usr/bin/file.txt")
+'sString = Authenticate.Command("fdisk -l")
+'
+' Comments or bugs to bugs@cogier.com
+' Sudo solution
+' The program includes a Class that you can use to pass commands that require authentication (a password to run)
+'
+' Copyright (C) Charlie Ogier 2018
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+'

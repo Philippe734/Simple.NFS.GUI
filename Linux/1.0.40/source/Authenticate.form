@@ -1,0 +1,95 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,77,35)
+  Text = ("Authenticate")
+  Resizable = False
+  Stacking = Window.Above
+  SkipTaskbar = True
+  Arrangement = Arrange.Horizontal
+  Padding = 10
+  { VBox1 VBox
+    MoveScaled(0,2,8,11)
+    { PictureBox1 PictureBox
+      MoveScaled(1,1,10,11)
+      Picture = Picture["icon:/48/lock"]
+    }
+  }
+  { Panel6 VBox
+    MoveScaled(9,1,67,32)
+    Expand = True
+    { HBox1 HBox
+      MoveScaled(0,0,67,6)
+      Expand = True
+      { LabelHeader Label
+        MoveScaled(10,1,44,3)
+        Font = Font["Bold,+2"]
+        Expand = True
+      }
+    }
+    { HBox2 HBox
+      MoveScaled(0,6,67,6)
+      Expand = True
+      { Label2 Label
+        MoveScaled(1,1,53,5)
+        Expand = True
+        Text = ("An application is attempting to perform an action that requires privileges.\nAuthentication is required to run this action.")
+      }
+    }
+    { Panel1 HBox
+      MoveScaled(0,12,67,4)
+      { Label3 Label
+        MoveScaled(0,1,12,3)
+        AutoResize = True
+        Text = ("Password:  ")
+        Alignment = Align.Right
+      }
+      { TextBoxPassword TextBox
+        MoveScaled(14,0,17,4)
+        Expand = True
+        Password = True
+      }
+      { Panel7 Panel
+        MoveScaled(40,0,3,3)
+      }
+    }
+    { HBox3 HBox
+      MoveScaled(0,16,67,4)
+      { LabelFail Label
+        MoveScaled(1,1,67,4)
+        Visible = False
+        Font = Font["Bold"]
+        Expand = True
+        Text = ("Your authentication attempt was unsuccessful. Please try again.")
+        Alignment = Align.TopNormal
+      }
+    }
+    { Panel2 HBox
+      MoveScaled(0,21,67,5)
+      { LabelCaps Label
+        MoveScaled(1,0,27,4)
+        Font = Font["Bold,+2"]
+        Foreground = Color.Red
+        Expand = True
+      }
+      { ButtonCancel Button
+        MoveScaled(28,0,17,4)
+        Text = ("Cancel")
+      }
+      { Panel4 Panel
+        MoveScaled(45,0,1,4)
+      }
+      { ButtonAuthenticate Button
+        MoveScaled(47,0,17,4)
+        Text = ("Authenticate")
+      }
+      { Panel8 Panel
+        MoveScaled(64,0,3,4)
+      }
+    }
+  }
+  { Timer1 #Timer
+    #MoveScaled(0,18)
+    Delay = 10
+  }
+}
